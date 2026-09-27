@@ -16,7 +16,7 @@ export default function WorkoutDetailsClient({ workout }: Props) {
   const handleAddToPlan = () => {
     try {
       addToPlan(workout);
-      toast.success('Added to today\\'s plan', {
+      toast.success("Added to today's plan", {
         icon: '💪',
         style: {
           borderRadius: '10px',
@@ -59,7 +59,7 @@ export default function WorkoutDetailsClient({ workout }: Props) {
         className="flex-1 flex items-center justify-center bg-[#ccff00] hover:bg-[#b3e600] disabled:bg-[#5a661a] disabled:text-gray-400 disabled:cursor-not-allowed text-black font-bold uppercase tracking-wider px-6 py-4 rounded-md transition-colors"
       >
         <Plus className="w-5 h-5 mr-2" />
-        {isInPlan ? 'In Today\\'s Plan' : 'Add to Today\\'s Plan'}
+        {isInPlan ? "In Today's Plan" : "Add to Today's Plan"}
       </button>
       
       <button
