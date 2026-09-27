@@ -9,7 +9,7 @@ export default function NotFound() {
         Page Not Found
       </h2>
       <p className="text-gray-400 max-w-md mb-8">
-        The lift you're looking for doesn't exist. Maybe you typed the URL wrong, or maybe we reracked those plates.
+        The lift you&apos;re looking for doesn&apos;t exist. Maybe you typed the URL wrong, or maybe we reracked those plates.
       </p>
       <Link 
         href="/"

@@ -27,7 +27,7 @@ async function getWorkout(id: string): Promise<Workout | null> {
       reps: item.reps,
       instructions: item.instructions
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

@@ -20,7 +20,7 @@ export default function Hero() {
               </span>
             </h1>
             <p className="text-xl text-gray-400 max-w-lg leading-relaxed">
-              FitLog is a dark, no-nonsense gym companion. Pick a lift, lock it into today's plan, and watch the week's work add up.
+              FitLog is a dark, no-nonsense gym companion. Pick a lift, lock it into today&apos;s plan, and watch the week&apos;s work add up.
             </p>
             <Link 
               href="#library" 

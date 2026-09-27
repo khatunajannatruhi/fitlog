@@ -21,6 +21,7 @@ export default function MyPlanClient() {
   useEffect(() => {
     const tab = searchParams.get('tab');
     if (tab === 'saved' || tab === 'plan') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveTab(tab);
     }
   }, [searchParams]);
@@ -114,7 +115,7 @@ export default function MyPlanClient() {
               activeTab === 'plan' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-gray-400 hover:text-gray-200'
             }`}
           >
-            Today's Plan ({planWorkouts.length})
+            Today&apos;s Plan ({planWorkouts.length})
           </button>
           <button
             onClick={() => setActiveTab('saved')}

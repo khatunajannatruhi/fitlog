@@ -24,8 +24,8 @@ export default function WorkoutDetailsClient({ workout }: Props) {
           color: '#fff',
         },
       });
-    } catch (error: any) {
-      toast.error(error.message, {
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Unknown error', {
         style: {
           borderRadius: '10px',
           background: '#333',

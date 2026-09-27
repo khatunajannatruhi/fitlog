@@ -12,6 +12,7 @@ async function getWorkouts(): Promise<Workout[]> {
   }
 
   const data = await res.json();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return data.map((item: any) => ({
     id: item.id.toString(),
     name: item.name,
