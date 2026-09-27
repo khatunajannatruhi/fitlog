@@ -6,13 +6,14 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Check, X, Clock, Flame, Star, Activity, Loader2 } from 'lucide-react';
+import { Check, X, Clock, Flame, Star, Activity, Loader2, Search } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function MyPlanClient() {
   const searchParams = useSearchParams();
   const initialTab = searchParams.get('tab') === 'saved' ? 'saved' : 'plan';
   const [activeTab, setActiveTab] = useState<'plan' | 'saved'>(initialTab);
+  const [searchQuery, setSearchQuery] = useState('');
   const isHydrated = useHydrated();
 
   const { planWorkouts, savedWorkouts, removeFromPlan, removeFromSaved, markAsDone } = useStore();
@@ -23,7 +24,6 @@ export default function MyPlanClient() {
       setActiveTab(tab);
     }
   }, [searchParams]);
-
   if (!isHydrated) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center min-h-[50vh]">
@@ -35,7 +35,11 @@ export default function MyPlanClient() {
     );
   }
 
-  const workouts = activeTab === 'plan' ? planWorkouts : savedWorkouts;
+  const baseWorkouts = activeTab === 'plan' ? planWorkouts : savedWorkouts;
+  const workouts = baseWorkouts.filter(w => 
+    w.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    w.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const totalExercises = planWorkouts.length;
   const totalMinutes = planWorkouts.reduce((acc, curr) => acc + curr.duration, 0);
@@ -103,24 +107,39 @@ export default function MyPlanClient() {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex space-x-2 border-b border-[#333333] mb-8">
-        <button
-          onClick={() => setActiveTab('plan')}
-          className={`px-6 py-3 font-bold uppercase tracking-wider text-sm transition-colors border-b-2 ${
-            activeTab === 'plan' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-gray-400 hover:text-gray-200'
-          }`}
-        >
-          Today's Plan ({planWorkouts.length})
-        </button>
-        <button
-          onClick={() => setActiveTab('saved')}
-          className={`px-6 py-3 font-bold uppercase tracking-wider text-sm transition-colors border-b-2 ${
-            activeTab === 'saved' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-gray-400 hover:text-gray-200'
-          }`}
-        >
-          Saved ({savedWorkouts.length})
-        </button>
+      {/* Tabs and Search */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#333333] mb-8 pb-4 sm:pb-0 space-y-4 sm:space-y-0 gap-4">
+        <div className="flex space-x-2">
+          <button
+            onClick={() => setActiveTab('plan')}
+            className={`px-4 sm:px-6 py-3 font-bold uppercase tracking-wider text-sm transition-colors border-b-2 sm:translate-y-[2px] ${
+              activeTab === 'plan' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-gray-400 hover:text-gray-200'
+            }`}
+          >
+            Today's Plan ({planWorkouts.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('saved')}
+            className={`px-4 sm:px-6 py-3 font-bold uppercase tracking-wider text-sm transition-colors border-b-2 sm:translate-y-[2px] ${
+              activeTab === 'saved' ? 'border-[#ccff00] text-[#ccff00]' : 'border-transparent text-gray-400 hover:text-gray-200'
+            }`}
+          >
+            Saved ({savedWorkouts.length})
+          </button>
+        </div>
+        
+        <div className="relative w-full sm:w-64 pb-2 sm:pb-0">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none sm:pb-2">
+            <Search className="h-4 w-4 text-gray-400" />
+          </div>
+          <input
+            type="text"
+            placeholder="Search workouts..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="block w-full pl-10 pr-3 py-2 border border-[#333333] rounded-md leading-5 bg-[#171717] text-gray-300 placeholder-gray-500 focus:outline-none focus:border-[#ccff00] focus:ring-1 focus:ring-[#ccff00] sm:text-sm transition-colors"
+          />
+        </div>
       </div>
 
       {/* Workout cards list */}
