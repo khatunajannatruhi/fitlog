@@ -47,8 +47,8 @@ export default function MyPlanClient() {
 
   const handleMarkAsDone = (id: string) => {
     markAsDone(id);
-    toast.success('Workout marked as done!', {
-      icon: '✅',
+    toast.success('Great job! Workout marked as done.', {
+      icon: '🏆',
       style: { borderRadius: '10px', background: '#333', color: '#fff' },
     });
   };
