@@ -4,7 +4,6 @@ import { Workout } from '@/store/useStore';
 
 async function getWorkouts(): Promise<Workout[]> {
   const res = await fetch('https://api.abcz.workers.dev/api/fitlog', {
-    // Next.js 15 uses caching by default or no-store depending on route, we can cache it.
     cache: 'force-cache'
   });
   
@@ -12,7 +11,22 @@ async function getWorkouts(): Promise<Workout[]> {
     throw new Error('Failed to fetch workouts');
   }
 
-  return res.json();
+  const data = await res.json();
+  return data.map((item: any) => ({
+    id: item.id.toString(),
+    name: item.name,
+    category: item.muscleGroups ? item.muscleGroups[0] : 'General',
+    equipment: item.equipment,
+    duration: item.duration,
+    calories: item.caloriesBurned,
+    rating: item.rating,
+    imageUrl: item.image,
+    description: item.description,
+    difficulty: item.difficulty,
+    sets: item.sets,
+    reps: item.reps,
+    instructions: item.instructions
+  }));
 }
 
 export default async function Home() {

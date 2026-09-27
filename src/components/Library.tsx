@@ -33,7 +33,6 @@ export default function Library({ initialWorkouts }: Props) {
           <p className="text-gray-400 text-lg">Twelve lifts covering every major muscle group.</p>
         </div>
         
-        {/* Sort Dropdown - Challenge C1 */}
         <div className="mt-6 md:mt-0 relative z-20">
           <div className="flex items-center space-x-2">
             <span className="text-gray-400 text-sm">Sort By:</span>

@@ -11,7 +11,22 @@ async function getWorkout(id: string): Promise<Workout | null> {
     if (!res.ok) {
       return null;
     }
-    return res.json();
+    const item = await res.json();
+    return {
+      id: item.id.toString(),
+      name: item.name,
+      category: item.muscleGroups ? item.muscleGroups[0] : 'General',
+      equipment: item.equipment,
+      duration: item.duration,
+      calories: item.caloriesBurned,
+      rating: item.rating,
+      imageUrl: item.image,
+      description: item.description,
+      difficulty: item.difficulty,
+      sets: item.sets,
+      reps: item.reps,
+      instructions: item.instructions
+    };
   } catch (error) {
     return null;
   }
@@ -25,7 +40,6 @@ export default async function WorkoutDetails({ params }: { params: Promise<{ id:
     notFound();
   }
 
-  // Ensure default instructions if none provided
   const instructions = workout.instructions || [
     "Assume the correct starting position.",
     "Perform the movement with control.",
@@ -36,7 +50,6 @@ export default async function WorkoutDetails({ params }: { params: Promise<{ id:
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Left Side — Visual/Media */}
         <div className="relative w-full aspect-square lg:aspect-auto lg:h-[700px] bg-[#171717] rounded-2xl border border-[#333333] overflow-hidden shadow-2xl">
           <Image
             src={workout.imageUrl}
@@ -47,7 +60,6 @@ export default async function WorkoutDetails({ params }: { params: Promise<{ id:
           />
         </div>
 
-        {/* Right Side — sections */}
         <div className="flex flex-col">
           <div className="mb-6">
             <h1 className="text-4xl md:text-5xl font-black font-oswald uppercase tracking-wide text-white mb-4">
@@ -63,7 +75,6 @@ export default async function WorkoutDetails({ params }: { params: Promise<{ id:
             </div>
           </div>
 
-          {/* Key Specs table/panel */}
           <div className="bg-[#171717] rounded-xl border border-[#333333] overflow-hidden mb-8">
             <table className="w-full text-left text-sm">
               <tbody className="divide-y divide-[#333333]">
@@ -99,7 +110,6 @@ export default async function WorkoutDetails({ params }: { params: Promise<{ id:
             </table>
           </div>
 
-          {/* INSTRUCTIONS */}
           <div className="mb-6 flex-grow">
             <h2 className="text-2xl font-bold font-oswald uppercase tracking-wider text-white mb-6">Instructions</h2>
             <ol className="space-y-4">
@@ -114,7 +124,6 @@ export default async function WorkoutDetails({ params }: { params: Promise<{ id:
             </ol>
           </div>
 
-          {/* Call-to-action buttons */}
           <WorkoutDetailsClient workout={workout} />
         </div>
       </div>

@@ -76,7 +76,6 @@ export default function MyPlanClient() {
         </p>
       </div>
 
-      {/* Metrics Summary row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
         <div className="bg-[#171717] border border-[#333333] rounded-xl p-6 flex items-center">
           <div className="bg-[#262626] p-3 rounded-lg mr-4">
@@ -107,7 +106,6 @@ export default function MyPlanClient() {
         </div>
       </div>
 
-      {/* Tabs and Search */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#333333] mb-8 pb-4 sm:pb-0 space-y-4 sm:space-y-0 gap-4">
         <div className="flex space-x-2">
           <button
@@ -142,7 +140,6 @@ export default function MyPlanClient() {
         </div>
       </div>
 
-      {/* Workout cards list */}
       {workouts.length === 0 ? (
         <div className="bg-[#171717] border border-[#333333] border-dashed rounded-xl p-12 text-center flex flex-col items-center">
           <h3 className="text-2xl font-black font-oswald text-gray-300 uppercase mb-2">Nothing Here Yet</h3>
