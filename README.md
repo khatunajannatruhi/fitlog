@@ -1,6 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💪 FitLog - Train With Intent
 
-## Getting Started
+FitLog is a dark, no-nonsense gym companion that helps you track your workouts, manage your daily fitness plan, and reach your goals. Pick a lift, lock it into today's plan, and watch the week's work add up.
+
+## 🚀 Live Demo
+[Live Link](#) (Update this with your Vercel/Netlify link)
+
+## 🛠️ Technologies Used
+- Next.js (App Router)
+- React 19
+- Tailwind CSS v4
+- Zustand (State Management)
+- Lucide React (Icons)
+- React Hot Toast (Notifications)
+
+## ✨ Key Features
+1. **Interactive Workout Library:** Browse a comprehensive library of exercises covering every major muscle group, visually presented in a responsive 3x4 grid.
+2. **Dynamic Sorting:** Effortlessly sort the workout library by duration, calories, or rating to find exactly the lift you need.
+3. **Daily Plan Management:** Build your "Today's Plan" with up to 5 exercises and track your total exercise count, estimated minutes, and calories dynamically.
+4. **Save for Later:** Bookmark exercises you want to try later into a dedicated "Saved" tab.
+5. **Detailed Instructions:** View full step-by-step instructions and key specs (equipment, difficulty, sets, reps, duration, calories, rating) for each workout on dedicated detail pages.
+6. **Task Completion:** Mark exercises as done right from your plan to stay motivated, and easily remove items with instant toast feedback.
+7. **Persistent State:** Your plan and saved workouts are saved in `localStorage`, meaning you won't lose your data when you refresh the page.
+
+## ⚙️ Getting Started
 
 First, run the development server:
 
@@ -15,22 +37,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
