@@ -24,6 +24,7 @@
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono);
+  --font-oswald: var(--font-oswald), sans-serif;
 }
 
 body {
